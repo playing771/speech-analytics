@@ -1,14 +1,58 @@
 import { transcript as initialPhrases } from '../assets/transcript';
+import { formatTime } from './utils';
 
 type ILastActivePositon = { wordPosition: number; phrasePosition: number };
 
 export function AudioPlayerStore() {
   let lastActivePosition: ILastActivePositon | undefined = undefined;
+  let player: HTMLAudioElement;
 
   return {
     phrases: initialPhrases,
+    paused: true,
+    currentTime: 0,
+    duration: 0,
+
+    get currentPercentage() {
+      return this.duration > 0 ? (this.currentTime / this.duration) * 100 : 0;
+    },
     get phrasesCount() {
       return this.phrases.length;
+    },
+    get currentTimeFormatted() {
+      return formatTime(this.currentTime);
+    },
+    get durationFormatted() {
+      return formatTime(this.duration);
+    },
+    getPlayer() {
+      return player;
+    },
+
+    timeScroll(pageX: number, offsetWidth: number) {
+      const currentTime = (pageX / offsetWidth) * this.duration;
+      player.currentTime = currentTime;
+    },
+
+    updateTime() {
+      const { currentTime } = player;
+      this.currentTime = currentTime;
+      this.activateWord(currentTime);
+    },
+
+    togglePlayer() {
+      if (this.paused) {
+        player.play();
+      } else {
+        player.pause();
+      }
+      this.paused = !this.paused;
+    },
+
+    setPlayer(newPlayerRef: HTMLAudioElement) {
+      // console.log('player before', player);
+      player = newPlayerRef;
+      this.duration = player.duration;
     },
     activateWord(currentTime: number) {
       const phraseIdx = this.phrases.findIndex(phrase => phrase.timeStart >= currentTime);

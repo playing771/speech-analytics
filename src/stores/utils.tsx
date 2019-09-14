@@ -16,3 +16,9 @@ export const useStore = () => {
   }
   return store;
 };
+
+export function formatTime(time: number) {
+  if (!isNaN(time)) {
+    return Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2);
+  }
+}

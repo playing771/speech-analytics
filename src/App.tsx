@@ -1,18 +1,21 @@
 import React from 'react';
 
-import './App.css';
 import AudioPlayer from './components/AuidioPlayer';
-import { transcript } from './assets/transcript';
 import Phrases from './components/Phrases';
 import { StoreProvider } from './stores/utils';
+import Card from './components/Card';
+import './styles.css';
 
 const App: React.FC = () => {
   return (
     <StoreProvider>
-      <div className="App">
-        <h1>TEST</h1>
-        <Phrases></Phrases>
-        <AudioPlayer></AudioPlayer>
+      <div className="main-container">
+        <Card className="phrases-card">
+          <Phrases></Phrases>
+        </Card>
+        <Card className="audio-player-card">
+          <AudioPlayer></AudioPlayer>
+        </Card>
       </div>
     </StoreProvider>
   );

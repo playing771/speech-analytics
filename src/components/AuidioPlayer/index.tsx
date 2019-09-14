@@ -1,65 +1,50 @@
 import React, { useEffect, useRef } from 'react';
 import { useStore } from '../../stores/utils';
+import { observer } from 'mobx-react';
+import ProgressBar from './ProgressBar';
+import PlayButton from './PlayButton';
+
+import './styles.css';
+
 const soundFile = require('../../assets/sample.wav');
-// import * as sample from '../../res/sample.wav';
 
 interface IProps {}
 
-export default function AudioPlayer(props: IProps) {
-  const audioPlayerRef = useRef<HTMLAudioElement>(null);
-  const { activateWord } = useStore();
+const AudioPlayer = observer(function AudioPlayer(props: IProps) {
+  const playerRef = useRef<HTMLAudioElement>(null);
+
+  const {
+    paused,
+    togglePlayer,
+    setPlayer,
+    updateTime,
+    currentTimeFormatted,
+    durationFormatted,
+  } = useStore();
 
   useEffect(() => {
-    if (!audioPlayerRef.current) {
+    if (!playerRef.current) {
       console.warn('audio player doenst exists');
       return;
     }
 
-    audioPlayerRef.current.ontimeupdate = event => {
-      if (!audioPlayerRef.current) {
-        console.warn('audio player doenst exists');
-        return;
-      }
+    const player = playerRef.current;
 
-      activateWord(audioPlayerRef.current.currentTime);
-      // addWord();
-      // console.log('update', tmp);
+    player.ontimeupdate = updateTime;
+    player.oncanplay = () => {
+      setPlayer(player);
     };
+  }, [playerRef.current]);
 
-    audioPlayerRef.current.onseeking = () => {};
-
-    audioPlayerRef.current.onplay = () => {
-      // test('PLAYING');
-      // activateWord();
-      // changeWord();
-    };
-  }, [audioPlayerRef.current]);
-
-  // if (audioPlayerRef.current) {
-  //   audioPlayerRef.current.play();
-  //   audioPlayerRef.current.ontimeupdate = () => {
-  //     console.log('update');
-  //   };
-  // }
-  // const myaudio = new Audio(soundFile);
-  // myaudio.play();
-  // myaudio.loop = true;
   return (
-    <div>
-      <div>
-        {/* {this.state.player === 'paused' && (
-          <button onClick={() => this.setState({ player: 'playing' })}>Play</button>
-        )}
-        {this.state.player === 'playing' && (
-          <button onClick={() => this.setState({ player: 'paused' })}>Pause</button>
-        )}
-        {this.state.player === 'playing' || this.state.player === 'paused' ? (
-          <button onClick={() => this.setState({ player: 'stopped' })}>Stop</button>
-        ) : (
-          ''
-        )} */}
-        <audio ref={audioPlayerRef} src={soundFile}></audio>;
-      </div>
+    <div className="player-controls">
+      <PlayButton paused={paused} clickHandle={togglePlayer}></PlayButton>
+      <ProgressBar></ProgressBar>
+      <span className="player-controls__time">{currentTimeFormatted}/</span>
+      <span className="player-controls__time">{durationFormatted}</span>
+      <audio ref={playerRef} src={soundFile}></audio>
     </div>
   );
-}
+});
+
+export default AudioPlayer;

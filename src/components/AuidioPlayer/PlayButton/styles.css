@@ -1,0 +1,11 @@
+.play-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #3374eb;
+  cursor: pointer;
+}
+
+.play-btn:focus {
+  outline: none;
+}

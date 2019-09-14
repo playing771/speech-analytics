@@ -1,7 +1,7 @@
 import React from 'react';
 import { IWord } from '../../../types';
 import { useObserver } from 'mobx-react';
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react';
 
 interface IProps {
   word: IWord;

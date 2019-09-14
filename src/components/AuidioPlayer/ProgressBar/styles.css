@@ -1,0 +1,32 @@
+.bar {
+  user-select: none;
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.bar__progress {
+  flex: 1;
+  margin: 0 40px;
+  height: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #3374eb;
+  position: relative;
+}
+
+.bar__progress-inner {
+  position: relative;
+  height: 100%;
+  background-color: #e8e8e8;
+}
+
+.bar__progress-inner-control {
+  width: 20px;
+  height: 20px;
+  background-color: #3374eb;
+  border-radius: 50%;
+  margin-top: -8px;
+  margin-left: -14px;
+}
