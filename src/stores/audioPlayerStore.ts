@@ -40,11 +40,16 @@ export function AudioPlayerStore() {
       this.activateWord(currentTime);
     },
 
+    endAudio() {
+      this.paused = true;
+    },
+
     togglePlayer() {
       if (!player) {
         console.warn('cant find player');
         return;
       }
+
       if (this.paused) {
         player.play();
       } else {
@@ -68,7 +73,7 @@ export function AudioPlayerStore() {
           : this.phrases[this.phrasesCount - 1];
 
       phrase.words.some((word, index) => {
-        const toActivate = word.timeStart <= currentTime && currentTime <= word.timeEnd;
+        const activate = word.timeStart <= currentTime && currentTime <= word.timeEnd;
 
         if (lastActivePosition) {
           const word = this.phrases[lastActivePosition.phrasePosition].words[
@@ -77,7 +82,7 @@ export function AudioPlayerStore() {
           word.active = false;
         }
 
-        if (toActivate) {
+        if (activate) {
           lastActivePosition = {
             wordPosition: index,
             phrasePosition: phraseIdx > -1 ? phraseIdx - 1 : this.phrasesCount - 1,
@@ -85,7 +90,7 @@ export function AudioPlayerStore() {
 
           word.active = true;
         }
-        return toActivate;
+        return activate;
       });
     },
   };

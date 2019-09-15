@@ -20,6 +20,7 @@ const AudioPlayer = observer(function AudioPlayer(props: IProps) {
     updateTime,
     currentTimeFormatted,
     durationFormatted,
+    endAudio,
   } = useStore();
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const AudioPlayer = observer(function AudioPlayer(props: IProps) {
     player.oncanplay = () => {
       setPlayer(player);
     };
+    player.onended = endAudio;
   }, [playerRef.current]);
 
   return (
