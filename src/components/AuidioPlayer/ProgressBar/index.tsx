@@ -7,7 +7,7 @@ import './styles.css';
 interface IProps {}
 
 const ProgressBar = observer(function ProgressBarCmp(props: IProps) {
-  const { currentPercentage, timeScroll } = useStore();
+  const { currentPercentage, scrollProgress } = useStore();
   const barRef = useRef<HTMLDivElement>(null);
   const controlRef = useRef<any>(null);
 
@@ -25,7 +25,7 @@ const ProgressBar = observer(function ProgressBarCmp(props: IProps) {
       return;
     }
 
-    timeScroll(e.pageX - barRef.current.offsetLeft, barRef.current.offsetWidth);
+    scrollProgress(e.pageX - barRef.current.offsetLeft, barRef.current.offsetWidth);
   };
 
   const mouseUp = () => {

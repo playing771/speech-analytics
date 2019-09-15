@@ -29,7 +29,7 @@ export function AudioPlayerStore() {
       return player;
     },
 
-    timeScroll(pageX: number, offsetWidth: number) {
+    scrollProgress(pageX: number, offsetWidth: number) {
       const currentTime = (pageX / offsetWidth) * this.duration;
       player.currentTime = currentTime;
     },
