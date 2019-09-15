@@ -4,14 +4,19 @@
   justify-content: center;
   align-items: center;
   background-color: #f4f5f7;
-  height: 100vh;
+
+  padding-top: 48px;
+}
+
+.main-container * {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .phrases-card {
-  width: 70%;
+  width: 60%;
 }
 
 .audio-player-card {
-  width: 60%;
+  width: 50%;
   margin-top: 24px;
 }

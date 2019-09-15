@@ -1,5 +1,5 @@
 import React from 'react';
-import { IWord } from '../../../types';
+import { IWord } from '../../types';
 import { useObserver } from 'mobx-react';
 import { observer } from 'mobx-react';
 

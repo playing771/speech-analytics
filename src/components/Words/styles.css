@@ -1,0 +1,8 @@
+.word {
+  color: #37546f;
+  font-weight: 500;
+}
+
+.word--active {
+  background-color: #dae7ff;
+}

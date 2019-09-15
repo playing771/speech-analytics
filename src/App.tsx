@@ -10,7 +10,7 @@ const App: React.FC = () => {
   return (
     <StoreProvider>
       <div className="main-container">
-        <Card className="phrases-card">
+        <Card className="phrases-card" title="Пример звонка.wav" subTitle="21 мар 18:03:41">
           <Phrases></Phrases>
         </Card>
         <Card className="audio-player-card">

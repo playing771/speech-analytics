@@ -1,9 +1,9 @@
 import React from 'react';
-import { IWord } from '../../../types';
-import './styles.css';
+import { observer } from 'mobx-react';
+import { IWord } from '../../types';
 import WordItem from './WordItem';
-import { observer, useObserver } from 'mobx-react';
-import { spawn } from 'child_process';
+
+import './styles.css';
 
 interface IProps {
   words: IWord[];

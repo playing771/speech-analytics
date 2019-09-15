@@ -2,4 +2,18 @@
   border: 1px solid #e8dbdb;
   box-shadow: 0 0 10px rgba(56, 58, 60, 0.1);
   background-color: white;
+  padding: 24px 48px;
+}
+
+.card__title-container {
+  border-bottom: 1px solid #eff0f2;
+}
+
+.card__title {
+  color: #05294b;
+  font-weight: 600;
+}
+
+.card__sub-title {
+  color: #a5b1be;
 }
