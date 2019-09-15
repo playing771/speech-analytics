@@ -1,9 +1,9 @@
 import React from 'react';
-import Words from '../Words';
-import './styles.css';
 import { observer } from 'mobx-react';
 import { useStore } from '../../stores/utils';
 import PhraseItem from './PhraseItem';
+
+import './styles.css';
 
 const Phrases = observer(function PhrasesCmp() {
   const { phrases } = useStore();

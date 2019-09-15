@@ -17,16 +17,14 @@ const ProgressBar = observer(function ProgressBarCmp(props: IProps) {
       console.warn('cant find slider bar');
       return;
     }
-  }, [barRef.current, controlRef.current]);
+  }, []);
 
   const mouseMove = (e: any) => {
     if (!barRef.current) {
       console.warn('cant find scroll bar');
       return;
     }
-    console.log(e);
-    console.log('e.pageX ', e.pageX);
-    console.log(barRef.current.offsetLeft);
+
     timeScroll(e.pageX - barRef.current.offsetLeft, barRef.current.offsetWidth);
   };
 

@@ -41,6 +41,10 @@ export function AudioPlayerStore() {
     },
 
     togglePlayer() {
+      if (!player) {
+        console.warn('cant find player');
+        return;
+      }
       if (this.paused) {
         player.play();
       } else {
@@ -50,7 +54,6 @@ export function AudioPlayerStore() {
     },
 
     setPlayer(newPlayerRef: HTMLAudioElement) {
-      // console.log('player before', player);
       player = newPlayerRef;
       this.duration = player.duration;
     },
