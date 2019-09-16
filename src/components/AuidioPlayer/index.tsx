@@ -3,10 +3,11 @@ import { useStore } from '../../stores/utils';
 import { observer } from 'mobx-react';
 import ProgressBar from './ProgressBar';
 import PlayButton from './PlayButton';
+import sample from '../../assets/sample.wav'
 
 import './styles.css';
 
-const soundFile = require('../../assets/sample.wav');
+
 
 interface IProps {}
 
@@ -36,6 +37,7 @@ const AudioPlayer = observer(function AudioPlayer(props: IProps) {
       setPlayer(player);
     };
     player.onended = endAudio;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerRef.current]);
 
   return (
@@ -44,7 +46,7 @@ const AudioPlayer = observer(function AudioPlayer(props: IProps) {
       <ProgressBar></ProgressBar>
       <span className="player-controls__time">{currentTimeFormatted}/</span>
       <span className="player-controls__time">{durationFormatted}</span>
-      <audio ref={playerRef} src={soundFile}></audio>
+      <audio ref={playerRef} src={sample}></audio>
     </div>
   );
 });
